@@ -11,7 +11,7 @@ function Skills() {
 
   useEffect(() => {
     setIsloading(true)
-    fetch("http://localhost:8000/")
+    fetch("https://portfolio-backend-z9ls.onrender.com/")
       .then((res) => res.json())
       .then((res) => {
         setData(res);

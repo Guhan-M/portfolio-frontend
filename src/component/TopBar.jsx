@@ -63,7 +63,6 @@ function TopBar() {
             >
               <MenuIcon />
             </IconButton>
-
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -89,7 +88,6 @@ function TopBar() {
               ))}
             </Menu>
           </Box>   
-
           <CodeIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h4"

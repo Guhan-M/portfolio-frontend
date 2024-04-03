@@ -1,11 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { ToastContainer, toast } from 'react-toastify';
+import  validator  from 'validator';
 import 'react-toastify/dist/ReactToastify.css';
 function Contact() {
+const [emailerror,setEmailError]=useState(false)
+const [alertshown,setAlertShown]=useState(false)
 const nameref=useRef()
 const emailref=useRef()
 const contentref=useRef()
@@ -14,8 +17,11 @@ function fetchthedata(name,email,content){
   if(!email||!name){
     alert("Name or Email is in-valid")
   }
-  else{
-    fetch("http://localhost:8000/createlinkcontact",{
+  else if(!validator.isEmail(email)){
+      setEmailError(true)
+    }
+  else {
+    fetch(`https://portfolio-backend-z9ls.onrender.com/createlinkcontact`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -51,6 +57,15 @@ function handlesubmit(e){
   emailref.current.value=""
   contentref.current.value=""
 }
+  useEffect(()=>{
+    if(emailerror && ! alertshown){
+      alert("Please provide a valid email")
+      setAlertShown(true)
+    } 
+  },[emailerror,alertshown])
+
+
+
 
   return <>
   <div className='contactstyle'>
@@ -68,7 +83,7 @@ function handlesubmit(e){
     <div style={{display:"flex",flexDirection:"column"}}>
     <p style={{margin:"0px",fontWeight:"500"}}>Email</p>
     <a  className='linkeninstylecontact' 
-    href="https://mail.google.com/mail/u/0/#inbox?compose=new" target='blank'>guhan76guhan@gmail.com</a>
+    href="mailto:guhan76guhan@gmail.com" >guhan76guhan@gmail.com</a>
     </div>
     </div>
 
@@ -111,7 +126,6 @@ function handlesubmit(e){
     <div style={{marginBottom:"2%",marginTop:"2%"}}  >
     <div className="headinginputfield">Your Email</div>
     <input ref={emailref} className="headinginputfieldchild" style={{ width: '28ch' }}></input>
-  
     </div>  
 
     <div style={{marginBottom:"2%",marginTop:"2%"}}>

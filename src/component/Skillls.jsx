@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { UserContext } from "../utils/UserContex";
-import ReactLoading from 'react-loading';
+import CircularProgress from '@mui/material/CircularProgress';
+
 function Skills() {
  const dataskills= useContext(UserContext)
  let qualifications=dataskills.qualification
@@ -48,7 +49,7 @@ function Skills() {
             <span style={{ color: "rgb(70, 111, 238)" }}>S</span>kills
           </h1>
           <div className="bodyskills" style={{marginTop:"4%"}}>
-            {isloading? <b>Loading...</b>:null}
+            {isloading? <b><CircularProgress/></b>:null}
             {skills.map((skill) => (
               <div key={skill.id} >
                 <button className="skillsbuttonview">{skill.name}</button>

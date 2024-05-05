@@ -1,25 +1,21 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState,useContext} from "react";
 import Card from 'react-bootstrap/Card';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import CircularProgress from '@mui/material/CircularProgress';
+import { UserContext } from "../utils/UserContex";
+
 function Project() {  
- let[data,setdata]=useState({project:[]})
+  const dataskills= useContext(UserContext)
+  const projectdata= dataskills.projects
  const[project,setProject]=useState([])
  const [isloading,setIsloading]=useState(false)
 
-  useEffect(() => {
-    setIsloading(true)
-    fetch("https://portfolio-backend-z9ls.onrender.com/")
-      .then((res) => res.json())
-      .then((res) => {
-        setdata(res);
-        if (res.projects && res.projects.length > 0) {
-          setProject(res.projects);
-          setIsloading(false)
-        }
-      })
-      .catch((err) => console.log("Error fetching data:", err));
-  }, []);
+ useEffect(() => {
+  setIsloading(true)
+  setProject(projectdata)
+  setIsloading(false)
+}, []);
+
   
   // console.log("Data:", project); // Check the data fetched
 

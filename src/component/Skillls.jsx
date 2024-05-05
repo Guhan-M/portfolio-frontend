@@ -6,22 +6,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 function Skills() {
  const dataskills= useContext(UserContext)
  let qualifications=dataskills.qualification
-  const [data, setData] = useState({ skills: [], projects: [] });
+ let skillsdata = dataskills.skills
   const [skills, setSkills] = useState([]); // Initialize skills as an empty array
   const [isloading,setIsloading]=useState(false)
 
   useEffect(() => {
     setIsloading(true)
-    fetch("https://portfolio-backend-z9ls.onrender.com/")
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res);
-        if (res.skills && res.skills.length > 0) {
-          setSkills(res.skills);
-          setIsloading(false)
-        }
-      })
-      .catch((err) => console.log("Error fetching data:", err));
+    setSkills(skillsdata)
+    setIsloading(false)
   }, []);
 
   // console.log("Data:", data); // Check the data fetched

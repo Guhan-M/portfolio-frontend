@@ -2,7 +2,7 @@ import React,{useContext} from 'react'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { UserContext } from '../utils/UserContex';
-import resume from "../assets/GUHAN M.pdf"
+import resume from "../assets/GUHAN_M_Resume.pdf"
 function Home() {
  const data= useContext(UserContext)
 

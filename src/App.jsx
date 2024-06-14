@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect } from 'react'
 import TopBar from './component/TopBar'
 import Skills from './component/Skillls.jsx'
 import Home from './component/Home'
@@ -9,23 +9,36 @@ import {UserContext} from './utils/UserContex.jsx'
 import { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
+  
   let content=useContext(UserContext)
   const Homeref= useRef()
   const Serviceref= useRef()
   const Contactref= useRef()
   const Projectref= useRef()
 
-if(content.selectContent=="Project"){
-  Projectref.current?.scrollIntoView({behavior:"smooth"})
- }else if(content.selectContent=="Home"){
-  Homeref.current?.scrollIntoView({behavior:"smooth"})
- }else if(content.selectContent=="Contact"){
-  Contactref.current?.scrollIntoView({behavior:"smooth"})
- } else if(content.selectContent=="Skills"){
-  Serviceref.current?.scrollIntoView({behavior:"smooth"})
- }
+  const refs = {
+    Home: Homeref,
+    Skills: Serviceref,
+    Contact: Contactref,
+    Project: Projectref
+  };
 
- 
+  useEffect(() => {
+    if (content.selectContent && refs[content.selectContent]) {
+      refs[content.selectContent].current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [content.selectContent]);
+
+// if(content.selectContent=="Project"){
+//   Projectref.current?.scrollIntoView({behavior:"smooth"})
+//  }else if(content.selectContent=="Home"){
+//   Homeref.current?.scrollIntoView({behavior:"smooth"})
+//  }else if(content.selectContent=="Contact"){
+//   Contactref.current?.scrollIntoView({behavior:"smooth"})
+//  } else if(content.selectContent=="Skills"){
+//   Serviceref.current?.scrollIntoView({behavior:"smooth"})
+//  }
+
 return <>
   <div style={{height:"40px"}}><TopBar/></div>
   <div ref={Homeref}><Home/></div>

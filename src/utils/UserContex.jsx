@@ -5,6 +5,12 @@ function UserContex({children}) {
   let [selectContent,setSelectContent]=useState("Home")
   let qualification=[
     {
+      name:"MCA",
+      content:"Vels University, Pallavarm",
+      year:"2024 - 2026",
+      view:true
+    },
+    {
       name:"MERN Full Stack Development",
       content:"Guvi Geek Network, IIT, Madras",
       year:"2023",

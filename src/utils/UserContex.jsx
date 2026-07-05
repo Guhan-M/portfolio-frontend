@@ -8,7 +8,7 @@ function UserContex({children}) {
       name:"MCA",
       content:"Vels University, Pallavarm",
       year:"2024 - 2026",
-      view:true
+      view:false
     },
     {
       name:"MERN Full Stack Development",

@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 export const UserContext = React.createContext(null) 
+import images1 from "../assets/GUVI.png"
+import images2 from '../assets/astro_certificate.png'
 
 function UserContex({children}) {
   let [selectContent,setSelectContent]=useState("Home")
@@ -133,9 +135,21 @@ function UserContex({children}) {
       name:"Postman"
     }
   ]
+  let cerficate=[
+    {
+      id:"1",
+      name:"mernstack certficate",
+      image:images1
+    },
+    {
+      id:"2",
+      name:"astro",
+      image:images2
+    },
+  ]
 
   return <>
-  <UserContext.Provider value={{selectContent,setSelectContent,qualification,projects,skills}}>
+  <UserContext.Provider value={{selectContent,setSelectContent,qualification,projects,skills,cerficate}}>
     {children}
   </UserContext.Provider>
   </>

@@ -2,13 +2,17 @@ import React, { useEffect, useState, useContext } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { UserContext } from "../utils/UserContex";
 import CircularProgress from '@mui/material/CircularProgress';
+import Carousel from 'react-bootstrap/Carousel';
 
 function Skills() {
  const dataskills= useContext(UserContext)
  let qualifications=dataskills.qualification
  let skillsdata = dataskills.skills
+ let cerficate = dataskills.cerficate
+
   const [skills, setSkills] = useState([]); // Initialize skills as an empty array
   const [isloading,setIsloading]=useState(false)
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     setIsloading(true)
@@ -16,7 +20,8 @@ function Skills() {
     setIsloading(false)
   }, []);
 
-  // console.log("Data:", data); // Check the data fetched
+
+  // console.log("Data:", cerficate); // Check the data fetched
 
   return (
     <>
@@ -88,6 +93,55 @@ function Skills() {
               );
             })}
           </div>
+          <div className="certificatewidth">
+   <h2 style={{ textAlign: "center" }}>
+    <span style={{ color: "rgb(70, 111, 238)" }}>C</span>ertificates
+  </h2>
+  {selectedImage && (
+    <div
+      onClick={() => setSelectedImage(null)}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "rgba(0,0,0,0.8)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 9999,
+        cursor: "zoom-out",
+      }}
+    >
+      <img
+        src={selectedImage}
+        alt="Certificate"
+        style={{
+          maxWidth: "90%",
+          maxHeight: "90%",
+        }}
+      />
+    </div>
+  )}
+   <Carousel data-bs-theme="dark">
+   {cerficate.map((e, i) => (
+      <Carousel.Item>
+          <div key={i} style={{marginTop:"5%",padding:"20px"}}>
+            <img
+              src={e.image}
+              alt={e.name}
+              className="certificate-img"
+             style={{height:"70vh",padding:"10px",cursor: "zoom-in"}}
+             onClick={() => setSelectedImage(e.image)}
+             />
+          </div>
+      </Carousel.Item>
+          ))}
+      </Carousel>
+
+     
+</div>
         </div>
       </div>
     </>
